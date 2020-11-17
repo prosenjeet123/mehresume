@@ -8,7 +8,7 @@ function header(){
                 <img src={logo}></img>
            </div>
            <div className="header__content">
-               Menu Etc 
+               All menus here 
            </div>
         </div>
     )
