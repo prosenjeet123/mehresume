@@ -9,6 +9,7 @@ const Profleuserschema = new Schema({
     profile: {type: String,required: true},
     name: {type: String,required: true},
     summary: {type: String,required: true},
+    date: {type: Date, require:true}
 },{
     timestamp: true
 })
