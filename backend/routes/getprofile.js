@@ -1,5 +1,5 @@
 const router= require('express').Router();
-let profile = require('..models/profile.model');
+let profile = require('../models/profile.model');
 
 router.route('/').get((req,res) => {
     profile.find()
@@ -23,9 +23,9 @@ router.route('/add').post((req,res) =>{
         date
     });
 
-    Profile.save()
-    .then(()=>res.json(`Profile ${username} added!`))
-    .catch(err=>res.status('400').json(`Error mila : ${err}`))
+    newProfile.save()
+    .then(()=>res.json('Profile  added!'))
+    .catch(err=>res.status('400').json('Error mila'+err))
 
 })
 

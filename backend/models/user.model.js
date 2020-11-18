@@ -1,8 +1,8 @@
 const { Mongoose } = require("mongoose")
 
-const mango = reqire('mongoose')
+const mongoose = require('mongoose')
 
-const schema = Mongoose.schema;
+const Schema = mongoose.Schema;
 
 const userschema = new Schema({
     username: {
@@ -17,6 +17,6 @@ const userschema = new Schema({
     timestamp: true
 })
 
-const User= Mongoose.model('User',userschema);
+const User= mongoose.model('User',userschema);
 
 module.exports = User;

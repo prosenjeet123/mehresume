@@ -1,8 +1,8 @@
 const { Mongoose } = require("mongoose")
 
-const mango = reqire('mongoose')
+const mongoose = require('mongoose')
 
-const schema = Mongoose.schema;
+const Schema = mongoose.Schema;
 
 const Profleuserschema = new Schema({
     username: {type: String,required: true},
@@ -14,6 +14,6 @@ const Profleuserschema = new Schema({
     timestamp: true
 })
 
-const Profiledetail= Mongoose.model('User',Profleuserschema);
+const Profiledetail= mongoose.model('Profiledetail',Profleuserschema);
 
 module.exports = Profiledetail;

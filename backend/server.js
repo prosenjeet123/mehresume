@@ -21,16 +21,25 @@ app.use(express.json());
 //some mango things copy pasted config from mongo atlas
 
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://paul:paul1234@cluster0.wp3qc.mongodb.net/<dbname>?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true,useUnifiedTopology: true });
+const uri = "mongodb+srv://paul:paul1234@cluster0.af0yf.mongodb.net/test?retryWrites=true&w=majority";
+const client = new MongoClient(uri, {  useCreateIndex:true,  useNewUrlParser: true,useUnifiedTopology: true });
 client.once('open', ()=> {
   console.log('Mango connection estd.')
 });
+
+//
+//use the ROUTES APIS with backslash 
+const profileRouter = require('./routes/getprofile');
+const usersRouter = require('./routes/users');
+
+app.use('/getprofile',profileRouter);
+app.use('/users', usersRouter);
+
 client.connect(err => {
-  const collection = client.db("test").collection("devices");
+  const collection = client.db("mehdb").collection("all");
   // perform actions on the collection object
   client.close();
-  console.log(`neche wala ${collection}`)
+  console.log(`neche wala  ${collection}`)
 });
 
 
@@ -38,5 +47,5 @@ client.connect(err => {
 
 //start the server
 app.listen(port,()=>{
-    console.log(`BABA server is running at all cost on dwar: ${port}`);
+    console.log(`Server is running at all cost on dwar: ${port}`);
 })
