@@ -2,7 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 //intentionally changed to mango xd
-const mango = require('mongoose');
+const mongoose = require('mongoose');
 
 require('dotenv').config();
 
@@ -20,29 +20,20 @@ app.use(express.json());
 //**************** */
 //some mango things copy pasted config from mongo atlas
 
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://paul:paul1234@cluster0.af0yf.mongodb.net/test?retryWrites=true&w=majority";
-const client = new MongoClient(uri, {  useCreateIndex:true,  useNewUrlParser: true,useUnifiedTopology: true });
-client.once('open', ()=> {
-  console.log('Mango connection estd.')
-});
+const uri = process.env.ATLAS_URI;
+mongoose.connect(uri,{useNewUrlParser:true,useCreateIndex:true,useUnifiedTopology: true});
+const connection=mongoose.connection;
+connection.once('open',()=>{
+  console.log('Mangodb connection estd. successfully!')
+})
 
-//
+
 //use the ROUTES APIS with backslash 
 const profileRouter = require('./routes/getprofile');
 const usersRouter = require('./routes/users');
 
 app.use('/getprofile',profileRouter);
 app.use('/users', usersRouter);
-
-client.connect(err => {
-  const collection = client.db("mehdb").collection("all");
-  // perform actions on the collection object
-  client.close();
-  console.log(`neche wala  ${collection}`)
-});
-
-
 
 
 //start the server
