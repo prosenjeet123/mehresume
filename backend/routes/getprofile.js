@@ -1,17 +1,18 @@
 const router= require('express').Router();
-let profile = require('../models/profile.model');
+let Profile = require('../models/profile.model');
 
 router.route('/').get((req,res) => {
-    profile.find()
+    Profile.find()
     .then(profile => res.json(profile))
     .catch(err => res.status(400).json(`error mila: ${err}`))
 })
 
+//add userdetails
 router.route('/add').post((req,res) =>{
     const username = req.body.username;
-    const profile=req.body.profile;
-    const name =req.body.name;
-    const summary=req.body.summary;
+    const profile=  req.body.profile;
+    const name =    req.body.name;
+    const summary=  req.body.summary;
     const date= Date.parse(req.body.date);  
 
 
@@ -25,7 +26,7 @@ router.route('/add').post((req,res) =>{
 
     newProfile.save()
     .then(()=>res.json('Profile  added!'))
-    .catch(err=>res.status('400').json('Error mila'+err))
+    .catch(err=>res.status(400).json('Error mila'+err))
 
 })
 
