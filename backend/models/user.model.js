@@ -12,6 +12,11 @@ const userschema = new Schema({
         trim: true,
         minlenth: 3
     },
+    password:{
+        type:String,
+        required:true,
+        minlength:3
+    }
 
 },{
     timestamp: true
